@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("🪰 Zoonosis Scoring App")
+st.title("🪰 Zoonosis Diagnostic Tool")
 st.write(
     "The algorithm for the diagnosis " 
     "and management of common zoonoses has " 
