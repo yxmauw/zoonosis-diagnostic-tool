@@ -23,42 +23,55 @@ risk_factors = []
 exclusion_list = []
 st.subheader("Suspect zoonotic infection ...")
 st.write(":red[if the patient has:]")
-clinical_symptoms = st.multiselect("Any clinical symptoms such as:", 
-               ["fever >= 38°C",
-                "fever more than 1 occasion",
-                "headache", "chills", "myalgia", 
-                "fatigue", "dry cough", 
-                "shortness of breath", 
-                "general malaise"])
-
-st.write("AND")
-st.markdown("Any risk factors such as:")
-risk_factors.append(st.checkbox("Non-household contact with farm "
-            "animals or wildlife"))
-risk_factors.append(st.checkbox("Employment in agriculture, "
-            "meat processing, dairy or "
-            "veterinary industries"))
-risk_factors.append(st.checkbox("Non-work-related contact with "
-            "animals esp. cattle, sheep, pigs, "
-            "dogs and rodents"))
-risk_factors.append(st.checkbox("Exposure to animal tissues or "
-            "animal products e.g. birth fluids"))
-risk_factors.append(st.checkbox("Involvement in feral pig hunting, "
-            "carcass processing, transporting "
-            "or inspection for export"))
-risk_factors.append(st.checkbox("Tick bites"))
+with st.expander("Any clinical symptoms ..."):
+    clinical_symptoms = st.multiselect("Any clinical symptoms:", 
+                ["fever >= 38°C",
+                    "fever more than 1 occasion",
+                    "headache", "chills", "myalgia", 
+                    "fatigue", "dry cough", 
+                    "shortness of breath", 
+                    "general malaise", 
+                    "None of the above"],
+                    placeholder="No symptoms",
+                    label_visibility="collapsed")
+    if "None of the above" in clinical_symptoms:
+        st.write("Please proceed to identify risk factors.")
 
 st.write("AND")
 
-st.write(":red[**Exclusion**] " 
-        "of other common causes of fever such as:")
+with st.expander("Any risk factors ..."):
+    risk_factors.append(st.checkbox("Non-household contact with farm "
+                "animals or wildlife"))
+    risk_factors.append(st.checkbox("Employment in agriculture, "
+                "meat processing, dairy or "
+                "veterinary industries"))
+    risk_factors.append(st.checkbox("Non-work-related contact with "
+                "animals esp. cattle, sheep, pigs, "
+                "dogs and rodents"))
+    risk_factors.append(st.checkbox("Exposure to animal tissues or "
+                "animal products e.g. birth fluids"))
+    risk_factors.append(st.checkbox("Involvement in feral pig hunting, "
+                "carcass processing, transporting "
+                "or inspection for export"))
+    risk_factors.append(st.checkbox("Tick bites"))
+    no_risk_factors = st.checkbox("None of the above")
+    if no_risk_factors:
+        st.write("Please proceed to exclude other "
+                 "possible differential diagnoses.")
+
+st.write("AND")
+
+st.write("Following differential diagnoses not " 
+         "yet excluded:")
 exclusion_list.append(st.toggle("Influenza"))
 exclusion_list.append(st.toggle("Urinary tract infection"))
 exclusion_list.append(st.toggle("Cellulitis"))
-st.write("through basic investigations such as "
-         "FBC, EUC, LFTs, CRP, urinalysis, "
-         "influenza rapid test/PCR, "
-         "if appropriate, blood cultures, CXR")
+if any(exclusion_list):
+    st.write("Please perform basic investigations such as "
+             "FBC, EUC, LFTs, CRP, urinalysis, "
+             "influenza rapid test/PCR, "
+             "and if appropriate, blood cultures, CXR to "
+             "exclude diagnosis.")
 
 if len(clinical_symptoms) > 0 and \
         any(risk_factors) and \
@@ -95,26 +108,26 @@ if len(clinical_symptoms) > 0 and \
             sample.
     """)
 
-st.header("Diagnosis is:")
+    st.header("Diagnosis is:")
 
-diseases = ["Q fever", "Brucellosis", "Leptospirosis"]
-all_options = ["Q fever", "Brucellosis", "Leptospirosis", "None of the above"]
+    diseases = ["Q fever", "Brucellosis", "Leptospirosis"]
+    all_options = ["Q fever", "Brucellosis", "Leptospirosis", "None of the above"]
 
-diagnosis = st.radio("Diagnosis is", all_options, index=3, label_visibility="collapsed")
+    diagnosis = st.radio("Diagnosis is", all_options, index=3, label_visibility="collapsed")
 
-if diagnosis in diseases:
-    st.subheader("Management steps:")
-    st.markdown("""
-                * Treat according to Therapeutic Guidelines: 
-                Antibiotic
-                * Consult infectious diseases physician in
-                all suspected or confirmed cases where diagnosis 
-                and treatment are complicated.
-                * Consult pathology for advice on intepreting 
-                serology.
-                * Brucellosis treatment includes 6 weeks rifampicin.
-    """)
-if diagnosis not in diseases:
-    st.subheader("Next step:")
-    st.write("Consult an infectious diseases "
-             "physician for further advice.")
+    if diagnosis in diseases:
+        st.subheader("Management steps:")
+        st.markdown("""
+                    * Treat according to Therapeutic Guidelines: 
+                    Antibiotic
+                    * Consult infectious diseases physician in
+                    all suspected or confirmed cases where diagnosis 
+                    and treatment are complicated.
+                    * Consult pathology for advice on intepreting 
+                    serology.
+                    * Brucellosis treatment includes 6 weeks rifampicin.
+        """)
+    if diagnosis not in diseases:
+        st.subheader("Next step:")
+        st.write("Consult an infectious diseases "
+                "physician for further advice.")
