@@ -28,20 +28,32 @@ st.multiselect("Any of the following clinical symptoms:",
                 "fatigue", "dry cough", 
                 "shortness of breath", 
                 "general malaise"])
+
 st.write("AND")
-st.multiselect("Any of the following risk factors:", 
-               ["Non-household contact with farm "
-                "animals or wildlife", 
-                "Employment in agriculture, "
-                "Meat processing, dairy or "
-                "veterinary industries", 
-                "Non-work-related contact with "
-                "animals esp. cattle, sheep, pigs, "
-                "dogs and rodents", 
-                "Exposure to animal tissues or "
-                "animal products e.g. birth fluids",
-                "Involvement in feral pig hunting, "
-                "carcass processing, transporting "
-                "or inspection for export",
-                "Tick bites"])
+st.markdown("Any of the following risk factors:")
+st.checkbox("Non-household contact with farm "
+            "animals or wildlife")
+st.checkbox("Employment in agriculture, "
+            "meat processing, dairy or "
+            "veterinary industries")
+st.checkbox("Non-work-related contact with "
+            "animals esp. cattle, sheep, pigs, "
+            "dogs and rodents")
+st.checkbox("Exposure to animal tissues or "
+            "animal products e.g. birth fluids")
+st.checkbox("Involvement in feral pig hunting, "
+            "carcass processing, transporting "
+            "or inspection for export")
+st.checkbox("Tick bites")
+
 st.write("AND")
+
+st.markdown("Other common causes of fever excluded such as:")
+st.toggle("Influenza")
+st.toggle("Urinary tract infection")
+st.toggle("Cellulitis")
+st.write("through basic investigations such as "
+         "FBC, EUC, LFTs, CRP, urinalysis, "
+         "influenza rapid test/PCR, "
+         "if appropriate, blood cultures, CXR")
+
