@@ -221,3 +221,4 @@ with tab2:
 
     display_pdf("zoonoses.pdf")
     st.markdown("[Reference]")
+    st.markdown("zoonoses_pdf.html"
