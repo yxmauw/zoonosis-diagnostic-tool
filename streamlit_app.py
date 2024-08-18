@@ -28,6 +28,7 @@ st.multiselect("Any of the following clinical symptoms:",
                 "fatigue", "dry cough", 
                 "shortness of breath", 
                 "general malaise"])
+st.write("AND")
 st.multiselect("Any of the following risk factors:", 
                ["Non-household contact with farm "
                 "animals or wildlife", 
@@ -43,4 +44,4 @@ st.multiselect("Any of the following risk factors:",
                 "carcass processing, transporting "
                 "or inspection for export",
                 "Tick bites"])
-
+st.write("AND")
