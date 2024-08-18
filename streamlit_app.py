@@ -58,4 +58,46 @@ st.write("through basic investigations such as "
          "influenza rapid test/PCR, "
          "if appropriate, blood cultures, CXR")
 
+if len(clinical_symptoms) > 0 and \
+        any(risk_factors) and \
+        not any(exclusion_list):
+    st.subheader("Next steps:")
+    st.write("Commence doxycycline (100mg po bd) "
+             "as empirical treatment immediately, "
+             "before test results are available. "
+             "Alternative: cotrimoxazole")
+    st.write("Request tests for 3 diseases in parellel. "
+             "5mL clotted blood is needed for **each** "
+             "antibody (serology) test, plus an additional "
+             "5mL for PCR test.")
+    st.markdown("""
+        **Q fever**
+        * Request _Coxiella burnetii_ PCR testing and 
+                serology. 
 
+        **Brucellosis**
+        * For people who had contact with feral pigs
+        * IgM and IgG of _Brucella_ species on initial
+            serum sample.
+        * Send another serum sample 5-7 days later
+            and ask for serological testing for
+            _Brucella spp._ in parallel with earlier
+            sample.
+                
+        **Leptospirosis**
+        * IgM and IgG for _Leptospira spp._ on initial
+            serum sample.
+        * Send another serum sample 5-7 days later
+            and ask for serological testing for 
+            _Leptospira spp._ in parellel with earlier
+            sample.
+    """)
+
+st.header("Diagnosis is:")
+diseases = ["Q fever", "Brucellosis", "Leptospirosis"]
+all_options = diseases.append("None of the above")
+diagnosis = st.radio("Diagnosis is", all_options, label_visibility="collapsed")
+if diagnosis in diseases:
+    st.subheader("Management steps:")
+    st.write("Treat according to Therapeutic Guidelines: "
+             "Antibiotic")
