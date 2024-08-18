@@ -213,7 +213,7 @@ with tab1:
                 "Please consider other differential diagnoses.")
 
 with tab2: 
-    st.html("zoonoses.html")
+    st.image(["zoonoses_page-1.jpg", "zoonoses_page-2.jpg])
     # def display_pdf(filepath):
     #     with open(filepath,"rb") as f:
     #         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
