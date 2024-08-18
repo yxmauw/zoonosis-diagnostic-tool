@@ -21,14 +21,14 @@ st.markdown("""
 )
 
 st.subheader("Suspect zoonotic infection if the patient has:")
-st.multiselect("Clinical symptoms", 
+st.multiselect("Any of the following clinical symptoms:", 
                ["fever >= 38°C",
                 "fever more than 1 occasion",
                 "headache", "chills", "myalgia", 
                 "fatigue", "dry cough", 
                 "shortness of breath", 
                 "general malaise"])
-st.multiselect("Risk factors", 
+st.multiselect("Any of the following risk factors:", 
                ["Non-household contact with farm "
                 "animals or wildlife", 
                 "Employment in agriculture, "
