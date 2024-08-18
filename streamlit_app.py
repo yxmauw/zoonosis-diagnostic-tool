@@ -1,5 +1,18 @@
 import streamlit as st
 
+def reset_button():
+    st.session_state["1"] = False
+    st.session_state["2"] = False
+    st.session_state["3"] = False
+    st.session_state["4"] = False
+    st.session_state["5"] = False
+    st.session_state["6"] = False
+    return
+
+def clear_none():
+    st.session_state["7"] = False
+    return
+
 st.title("🪰 Zoonosis Diagnostic Tool")
 st.write(
     "The algorithm for the diagnosis " 
@@ -41,93 +54,138 @@ st.write("AND")
 
 with st.expander("Any risk factors ..."):
     risk_factors.append(st.checkbox("Non-household contact with farm "
-                "animals or wildlife"))
+                "animals or wildlife", key="1", on_change=clear_none))
     risk_factors.append(st.checkbox("Employment in agriculture, "
                 "meat processing, dairy or "
-                "veterinary industries"))
+                "veterinary industries", key="2", on_change=clear_none))
     risk_factors.append(st.checkbox("Non-work-related contact with "
                 "animals esp. cattle, sheep, pigs, "
-                "dogs and rodents"))
+                "dogs and rodents", key="3", on_change=clear_none))
     risk_factors.append(st.checkbox("Exposure to animal tissues or "
-                "animal products e.g. birth fluids"))
+                "animal products e.g. birth fluids", key="4", on_change=clear_none))
     risk_factors.append(st.checkbox("Involvement in feral pig hunting, "
                 "carcass processing, transporting "
-                "or inspection for export"))
-    risk_factors.append(st.checkbox("Tick bites"))
-    no_risk_factors = st.checkbox("None of the above")
-    if no_risk_factors:
+                "or inspection for export", key="5", on_change=clear_none))
+    risk_factors.append(st.checkbox("Tick bites", key="6", on_change=clear_none))
+    no_risk_factors = st.checkbox("None of the above", key="7", on_change=reset_button)
+    if no_risk_factors or any(risk_factors):
         st.write("Please proceed to exclude other "
                  "possible differential diagnoses.")
-
+    
 st.write("AND")
 
-st.write("Following differential diagnoses not " 
-         "yet excluded:")
-exclusion_list.append(st.toggle("Influenza"))
-exclusion_list.append(st.toggle("Urinary tract infection"))
-exclusion_list.append(st.toggle("Cellulitis"))
-if any(exclusion_list):
-    st.write("Please perform basic investigations such as "
-             "FBC, EUC, LFTs, CRP, urinalysis, "
-             "influenza rapid test/PCR, "
-             "and if appropriate, blood cultures, CXR to "
-             "exclude diagnosis.")
+with st.expander("Common differential "
+                 "diagnoses not yet excluded ..."):
+    exclusion_list.append(st.toggle("Influenza"))
+    exclusion_list.append(st.toggle("Urinary tract infection"))
+    exclusion_list.append(st.toggle("Cellulitis"))
+    if any(exclusion_list):
+        st.write("Please perform basic investigations such as "
+                "FBC, EUC, LFTs, CRP, urinalysis, "
+                "influenza rapid test/PCR, "
+                "and if appropriate, blood cultures, CXR to "
+                "exclude diagnosis.")
+
 
 if len(clinical_symptoms) > 0 and \
         any(risk_factors) and \
         not any(exclusion_list):
-    st.subheader("Next steps:")
-    st.write("Commence doxycycline (100mg po bd) "
-             "as empirical treatment immediately, "
-             "before test results are available. "
-             "Alternative: cotrimoxazole")
-    st.write("Request tests for 3 diseases in parellel. "
-             "5mL clotted blood is needed for **each** "
-             "antibody (serology) test, plus an additional "
-             "5mL for PCR test.")
-    st.markdown("""
-        **Q fever**
-        * Request _Coxiella burnetii_ PCR testing and 
-                serology. 
-
-        **Brucellosis**
-        * For people who had contact with feral pigs
-        * IgM and IgG of _Brucella_ species on initial
-            serum sample.
-        * Send another serum sample 5-7 days later
-            and ask for serological testing for
-            _Brucella spp._ in parallel with earlier
-            sample.
-                
-        **Leptospirosis**
-        * IgM and IgG for _Leptospira spp._ on initial
-            serum sample.
-        * Send another serum sample 5-7 days later
-            and ask for serological testing for 
-            _Leptospira spp._ in parellel with earlier
-            sample.
-    """)
-
-    st.header("Diagnosis is:")
-
-    diseases = ["Q fever", "Brucellosis", "Leptospirosis"]
-    all_options = ["Q fever", "Brucellosis", "Leptospirosis", "None of the above"]
-
-    diagnosis = st.radio("Diagnosis is", all_options, index=3, label_visibility="collapsed")
-
-    if diagnosis in diseases:
-        st.subheader("Management steps:")
+    with st.expander("Next steps:"):
+        st.write("Commence doxycycline (100mg po bd) "
+                "as empirical treatment immediately, "
+                "before test results are available. "
+                "Alternative: cotrimoxazole")
+        st.write("Request tests for 3 diseases in parellel. "
+                "5mL clotted blood is needed for **each** "
+                "antibody (serology) test, plus an additional "
+                "5mL for PCR test.")
         st.markdown("""
-                    * Treat according to Therapeutic Guidelines: 
-                    Antibiotic
-                    * Consult infectious diseases physician in
-                    all suspected or confirmed cases where diagnosis 
-                    and treatment are complicated.
-                    * Consult pathology for advice on intepreting 
-                    serology.
-                    * Brucellosis treatment includes 6 weeks rifampicin.
+            **Q fever**
+            * Request _Coxiella burnetii_ PCR testing and 
+                    serology. 
+
+            **Brucellosis**
+            * For people who had contact with feral pigs
+            * IgM and IgG of _Brucella_ species on initial
+                serum sample.
+            * Send another serum sample 5-7 days later
+                and ask for serological testing for
+                _Brucella spp._ in parallel with earlier
+                sample.
+                    
+            **Leptospirosis**
+            * IgM and IgG for _Leptospira spp._ on initial
+                serum sample.
+            * Send another serum sample 5-7 days later
+                and ask for serological testing for 
+                _Leptospira spp._ in parellel with earlier
+                sample.
         """)
-    if diagnosis not in diseases:
-        st.subheader("Next step:")
-        st.write("Consult an infectious diseases "
-                "physician for further advice.")
+
+    with st.expander("Diagnosis"):
+
+        diseases = ["Q fever", "Brucellosis", "Leptospirosis"]
+        all_options = ["Q fever", "Brucellosis", "Leptospirosis", "None of the above"]
+
+        diagnosis = st.radio("Diagnosis is", all_options, index=3, label_visibility="collapsed")
+
+        if diagnosis in diseases:
+            st.subheader("Management steps:")
+            st.markdown("""
+                        * Treat according to Therapeutic Guidelines: 
+                        Antibiotic
+                        * Consult infectious diseases physician in
+                        all suspected or confirmed cases where diagnosis 
+                        and treatment are complicated.
+                        * Consult pathology for advice on intepreting 
+                        serology.
+                        * Brucellosis treatment includes 6 weeks rifampicin.
+            """)
+        if diagnosis == "Q fever":
+            with st.container():
+                st.markdown("""
+                ##### Q fever specific:
+                * Assess chronic Q fever risk (e.g. 
+                underlying heart valve defect, vascular 
+                graft, aneurysm or prosthesis)
+                * Consider echocardiogram.
+                * Continue doxycycline treatment for 14 days
+                even if afebrile, to prevent 5% risk of 
+                developing chronic Q fever due to infectious
+                relapse.
+                ###### :red[If at risk of chronic infection:]
+                * Repeat serology at 3, 6, 12 months.
+                ###### :red[If not at risk:]
+                * Repeat serology at 6, 12 months.
+                ###### If clinical and laboratory evidence of chronic Q fever or endocarditis:
+                * Prolonged combination therapy (with addition
+                of rifampicin or hydrochloroquine) may be required.
+                * Seek expert advice from an infectious diseases physician. 
+                """)
+        if diagnosis == "Brucellosis":
+            with st.container():
+                st.markdown("""
+                ##### Brucellosis specific:
+                * Ask patient to seek medical assistance if
+                symptoms recur.
+                * Seek expert advice if additional treatment
+                required.
+                """)
+        if diagnosis == "Leptospirosis":
+            with st.container():
+                st.markdown("""
+                ##### Leptospirosis specific:
+                * Follow-up is not usually required
+                after treatment.
+                """)
+        if diagnosis not in diseases:
+            st.markdown("##### Next step:")
+            st.write("Consult an infectious diseases "
+                    "physician for further advice.")
+        
+if "None of the above" in clinical_symptoms or \
+        no_risk_factors:
+    st.subheader("Assessment:")
+    st.write("Zoonotic infection is of low probability. "
+             "Please consider other differential diagnoses.")
+
