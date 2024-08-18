@@ -19,9 +19,10 @@ st.markdown("""
     and medical microbiologists for further guidance
 """
 )
-
+risk_factors = []
+exclusion_list = []
 st.subheader("Suspect zoonotic infection if the patient has:")
-st.multiselect("Any of the following clinical symptoms:", 
+clinical_symptoms = st.multiselect("Any of the following clinical symptoms:", 
                ["fever >= 38°C",
                 "fever more than 1 occasion",
                 "headache", "chills", "myalgia", 
@@ -31,29 +32,30 @@ st.multiselect("Any of the following clinical symptoms:",
 
 st.write("AND")
 st.markdown("Any of the following risk factors:")
-st.checkbox("Non-household contact with farm "
-            "animals or wildlife")
-st.checkbox("Employment in agriculture, "
+risk_factors.append(st.checkbox("Non-household contact with farm "
+            "animals or wildlife"))
+risk_factors.append(st.checkbox("Employment in agriculture, "
             "meat processing, dairy or "
-            "veterinary industries")
-st.checkbox("Non-work-related contact with "
+            "veterinary industries"))
+risk_factors.append(st.checkbox("Non-work-related contact with "
             "animals esp. cattle, sheep, pigs, "
-            "dogs and rodents")
-st.checkbox("Exposure to animal tissues or "
-            "animal products e.g. birth fluids")
-st.checkbox("Involvement in feral pig hunting, "
+            "dogs and rodents"))
+risk_factors.append(st.checkbox("Exposure to animal tissues or "
+            "animal products e.g. birth fluids"))
+risk_factors.append(st.checkbox("Involvement in feral pig hunting, "
             "carcass processing, transporting "
-            "or inspection for export")
-st.checkbox("Tick bites")
+            "or inspection for export"))
+risk_factors.append(st.checkbox("Tick bites"))
 
 st.write("AND")
 
 st.markdown("Other common causes of fever excluded such as:")
-st.toggle("Influenza")
-st.toggle("Urinary tract infection")
-st.toggle("Cellulitis")
+exclusion_list.append(st.toggle("Influenza"))
+exclusion_list.append(st.toggle("Urinary tract infection"))
+exclusion_list.append(st.toggle("Cellulitis"))
 st.write("through basic investigations such as "
          "FBC, EUC, LFTs, CRP, urinalysis, "
          "influenza rapid test/PCR, "
          "if appropriate, blood cultures, CXR")
+
 
