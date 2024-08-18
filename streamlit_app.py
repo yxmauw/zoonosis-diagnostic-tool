@@ -94,10 +94,21 @@ if len(clinical_symptoms) > 0 and \
     """)
 
 st.header("Diagnosis is:")
+
 diseases = ["Q fever", "Brucellosis", "Leptospirosis"]
-all_options = diseases.append("None of the above")
+all_options = ["Q fever", "Brucellosis", "Leptospirosis", "None of the above"]
+
 diagnosis = st.radio("Diagnosis is", all_options, label_visibility="collapsed")
+
 if diagnosis in diseases:
     st.subheader("Management steps:")
-    st.write("Treat according to Therapeutic Guidelines: "
-             "Antibiotic")
+    st.markdown("""
+                * Treat according to Therapeutic Guidelines: 
+                Antibiotic
+                * Consult infectious diseases physician in
+                all suspected or confirmed cases where diagnosis 
+                and treatment are complicated.
+                * Consult pathology for advice on intepreting 
+                serology.
+                * Brucellosis treatment includes 6 weeks rifampicin.
+    """)
