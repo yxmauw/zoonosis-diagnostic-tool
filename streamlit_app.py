@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("🎈 Zoonosis Scoring App")
+st.title("🪰 Zoonosis Scoring App")
 st.write(
     "The algorithm for the diagnosis " 
     "and management of common zoonoses has " 
@@ -21,8 +21,9 @@ st.markdown("""
 )
 risk_factors = []
 exclusion_list = []
-st.subheader("Suspect zoonotic infection if the patient has:")
-clinical_symptoms = st.multiselect("Any of the following clinical symptoms:", 
+st.subheader("Suspect zoonotic infection ...")
+st.write(":red[if the patient has:]")
+clinical_symptoms = st.multiselect("Any clinical symptoms such as:", 
                ["fever >= 38°C",
                 "fever more than 1 occasion",
                 "headache", "chills", "myalgia", 
@@ -31,7 +32,7 @@ clinical_symptoms = st.multiselect("Any of the following clinical symptoms:",
                 "general malaise"])
 
 st.write("AND")
-st.markdown("Any of the following risk factors:")
+st.markdown("Any risk factors such as:")
 risk_factors.append(st.checkbox("Non-household contact with farm "
             "animals or wildlife"))
 risk_factors.append(st.checkbox("Employment in agriculture, "
@@ -49,7 +50,8 @@ risk_factors.append(st.checkbox("Tick bites"))
 
 st.write("AND")
 
-st.markdown("Other common causes of fever excluded such as:")
+st.write(":red[**Exclusion**] " 
+        "of other common causes of fever such as:")
 exclusion_list.append(st.toggle("Influenza"))
 exclusion_list.append(st.toggle("Urinary tract infection"))
 exclusion_list.append(st.toggle("Cellulitis"))
@@ -98,7 +100,7 @@ st.header("Diagnosis is:")
 diseases = ["Q fever", "Brucellosis", "Leptospirosis"]
 all_options = ["Q fever", "Brucellosis", "Leptospirosis", "None of the above"]
 
-diagnosis = st.radio("Diagnosis is", all_options, label_visibility="collapsed")
+diagnosis = st.radio("Diagnosis is", all_options, index=3, label_visibility="collapsed")
 
 if diagnosis in diseases:
     st.subheader("Management steps:")
@@ -112,3 +114,7 @@ if diagnosis in diseases:
                 serology.
                 * Brucellosis treatment includes 6 weeks rifampicin.
     """)
+if diagnosis not in diseases:
+    st.subheader("Next step:")
+    st.write("Consult an infectious diseases "
+             "physician for further advice.")
