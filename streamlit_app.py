@@ -214,7 +214,8 @@ with tab1:
                 "Please consider other differential diagnoses.")
 
 with tab2: 
-    st.image(["zoonoses_page-1.jpg", "zoonoses_page-2.jpg", "zoonoses_page-3.jpg", "zoonoses_page-4.jpg", "zoonoses_page-5.jpg"])
+    st.image(["assets/zoonoses_page-1.jpg", "assets/zoonoses_page-2.jpg", 
+              "assets/zoonoses_page-3.jpg", "assets/zoonoses_page-4.jpg", "assets/zoonoses_page-5.jpg"])
     # def display_pdf(filepath):
     #     with open(filepath,"rb") as f:
     #         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
