@@ -77,21 +77,40 @@ with tab1:
 
     st.write(":blue[**AND**]")
 
+    risk_factors_dict = {
+        "1": "Non-household contact with farm "
+                    "animals or wildlife",
+        "2": "Employment in agriculture, "
+            "meat processing, dairy or "
+            "veterinary industries",
+        "3": "Non-work-related contact with "
+            "animals esp. cattle, sheep, pigs, "
+            "dogs and rodents",
+        "4": "Exposure to animal tissues or "
+            "animal products e.g. birth fluids",
+        "5": "Involvement in feral pig hunting, "
+            "carcass processing, transporting "
+            "or inspection for export",
+        "6": "Tick bites"
+    }
+
     with st.expander("Any risk factors ..."):
-        risk_factors.append(st.checkbox("Non-household contact with farm "
-                    "animals or wildlife", key="1", on_change=clear_none))
-        risk_factors.append(st.checkbox("Employment in agriculture, "
-                    "meat processing, dairy or "
-                    "veterinary industries", key="2", on_change=clear_none))
-        risk_factors.append(st.checkbox("Non-work-related contact with "
-                    "animals esp. cattle, sheep, pigs, "
-                    "dogs and rodents", key="3", on_change=clear_none))
-        risk_factors.append(st.checkbox("Exposure to animal tissues or "
-                    "animal products e.g. birth fluids", key="4", on_change=clear_none))
-        risk_factors.append(st.checkbox("Involvement in feral pig hunting, "
-                    "carcass processing, transporting "
-                    "or inspection for export", key="5", on_change=clear_none))
-        risk_factors.append(st.checkbox("Tick bites", key="6", on_change=clear_none))
+        for keynumber, value in risk_factors_dict.items():
+            risk_factors.append(st.checkbox(value, key=keynumber, on_change=clear_none))
+        # risk_factors.append(st.checkbox("Non-household contact with farm "
+        #             "animals or wildlife", key="1", on_change=clear_none))
+        # risk_factors.append(st.checkbox("Employment in agriculture, "
+        #             "meat processing, dairy or "
+        #             "veterinary industries", key="2", on_change=clear_none))
+        # risk_factors.append(st.checkbox("Non-work-related contact with "
+        #             "animals esp. cattle, sheep, pigs, "
+        #             "dogs and rodents", key="3", on_change=clear_none))
+        # risk_factors.append(st.checkbox("Exposure to animal tissues or "
+        #             "animal products e.g. birth fluids", key="4", on_change=clear_none))
+        # risk_factors.append(st.checkbox("Involvement in feral pig hunting, "
+        #             "carcass processing, transporting "
+        #             "or inspection for export", key="5", on_change=clear_none))
+        # risk_factors.append(st.checkbox("Tick bites", key="6", on_change=clear_none))
         no_risk_factors = st.checkbox("None of the above", key="7", on_change=reset_button)
         if no_risk_factors or any(risk_factors):
             st.write("Please proceed to exclude other "
