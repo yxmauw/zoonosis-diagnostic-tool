@@ -217,11 +217,3 @@ with tab1:
 with tab2: 
     st.image(["assets/zoonoses_page-1.jpg", "assets/zoonoses_page-2.jpg", 
               "assets/zoonoses_page-3.jpg", "assets/zoonoses_page-4.jpg", "assets/zoonoses_page-5.jpg"])
-    # def display_pdf(filepath):
-    #     with open(filepath,"rb") as f:
-    #         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-    #         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
-    #         st.markdown(pdf_display, unsafe_allow_html=True)
-
-    # display_pdf("zoonoses.pdf")
-    # st.markdown("[Reference]")
