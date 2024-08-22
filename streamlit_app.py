@@ -73,7 +73,7 @@ with tab1:
                         label_visibility="collapsed")
         if "None of the above" in clinical_symptoms:
             st.write("Please proceed to identify risk factors.")
-    st.write("Symptom(s) selected: ", ', '.join(clinical_symptoms))
+    st.write("**Symptom(s) selected:** ", ', '.join(clinical_symptoms))
 
     st.write(":blue[**AND**]")
 
