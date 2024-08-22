@@ -96,6 +96,7 @@ with tab1:
         if no_risk_factors or any(risk_factors):
             st.write("Please proceed to exclude other "
                     "possible differential diagnoses.")
+    st.write("**Risk factor(s) selected:** ", ', '.join(risk_factors))
         
     st.write(":blue[**AND**]")
 
