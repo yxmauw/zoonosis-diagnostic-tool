@@ -57,6 +57,7 @@ with tab1:
     )
     risk_factors = []
     exclusion_list = []
+    clinical_symptoms = []
     st.subheader("Suspect zoonotic infection ...")
     st.write(":blue[**if the patient has:**]")
     with st.expander("Any clinical symptoms ..."):
@@ -70,9 +71,9 @@ with tab1:
                         "None of the above"],
                         placeholder="No symptoms",
                         label_visibility="collapsed")
-        st.write("Symptom(s) selected: ", ', '.join(clinical_symptoms))
         if "None of the above" in clinical_symptoms:
             st.write("Please proceed to identify risk factors.")
+    st.write("Symptom(s) selected: ", ', '.join(clinical_symptoms))
 
     st.write(":blue[**AND**]")
 
