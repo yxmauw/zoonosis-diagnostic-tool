@@ -103,11 +103,10 @@ with tab1:
                     "possible differential diagnoses.")
             
     risk_factors_values = [value for bool_val, value in zip(risk_factors, risk_factors_dict.values()) if bool_val]
-
-    risk_factors_str = '\n * '.join(risk_factors_values)
+    
     st.write(f"""
     **Risk factor(s) selected**: 
-    {risk_factors_str}
+    \n *{'\n * '.join(risk_factors_values)}
     """)
         
     st.write(":blue[**AND**]")
