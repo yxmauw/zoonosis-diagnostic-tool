@@ -101,6 +101,10 @@ with tab1:
         if no_risk_factors or any(risk_factors):
             st.write("Please proceed to exclude other "
                     "possible differential diagnoses.")
+            
+    risk_factors_values = [value for bool_val, value in zip(risk_factors, risk_factors_dict.values()) if bool_val]
+
+    st.write("**Risk factors selected**: ", ', '.join(risk_factors_values))
         
     st.write(":blue[**AND**]")
 
