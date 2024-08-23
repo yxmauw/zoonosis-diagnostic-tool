@@ -104,7 +104,7 @@ with tab1:
             
     risk_factors_values = [value for bool_val, value in zip(risk_factors, risk_factors_dict.values()) if bool_val]
 
-    st.write("**Risk factor(s) selected**: ", ', '.join(risk_factors_values))
+    st.write("**Risk factor(s) selected**: ", '\n -'.join(risk_factors_values))
         
     st.write(":blue[**AND**]")
 
