@@ -107,7 +107,7 @@ with tab1:
     risk_factors_str = '\n * '.join(risk_factors_values)
     st.write(f"""
     **Risk factor(s) selected**: 
-    {risk_factor_str}
+    {risk_factors_str}
     """)
         
     st.write(":blue[**AND**]")
