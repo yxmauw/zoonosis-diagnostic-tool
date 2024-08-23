@@ -137,25 +137,25 @@ with tab1:
                     "antibody (serology) test, plus an additional "
                     "5mL for PCR test.")
             st.markdown("**Q fever**")
-            st.checkbox("Request _Coxiella burnetii_ PCR testing and 
-                        serology.")
+            st.checkbox("Request _Coxiella burnetii_ PCR testing and "
+                        "serology.")
             st.markdown("""  
                         **Brucellosis**
                         * For people who had contact with feral pigs
                         """)
-            st.checkbox("IgM and IgG of _Brucella_ species on initial
-                         serum sample.")
-            st.checkbox("Send another serum sample 5-7 days later
-                         and ask for serological testing for
-                        _Brucella spp._ in parallel with earlier
-                        sample.")
+            st.checkbox("IgM and IgG of _Brucella_ species on initial "
+                         "serum sample.")
+            st.checkbox("Send another serum sample 5-7 days later "
+                        "and ask for serological testing for "
+                        "_Brucella spp._ in parallel with earlier "
+                        "sample.")
             st.markdown("*Leptospirosis**")
-            st.checkbox("IgM and IgG for _Leptospira spp._ on initial
-                        serum sample.")
-            st.checkbox("Send another serum sample 5-7 days later
-                        and ask for serological testing for 
-                        _Leptospira spp._ in parellel with earlier
-                        sample.")
+            st.checkbox("IgM and IgG for _Leptospira spp._ on initial "
+                        "serum sample.")
+            st.checkbox("Send another serum sample 5-7 days later "
+                        "and ask for serological testing for "
+                        "_Leptospira spp._ in parellel with earlier "
+                        "sample.")
 
         with st.expander("Diagnosis"):
 
